@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from '../Contexts/AuthContext/AuthContext';
 import { Navigate, useLocation } from 'react-router';
+import Loading from '../Pages/Loading/Loading';
 
 const PrivateRoute = ({children}) => {
 
@@ -9,7 +10,7 @@ const PrivateRoute = ({children}) => {
 
 
     if(loading){
-        return <div className="min-h-screen w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
+        return <Loading></Loading>
     }
 
     if(!user) {

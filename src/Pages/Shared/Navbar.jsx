@@ -15,9 +15,9 @@ const Navbar = () => {
                     <details>
                         <summary>Dashboard</summary>
                         <ul className="p-2">
-                            <li><Link>Add Marathon</Link></li>
-                            <li><Link>My Marathon</Link></li>
-                            <li><Link>My Apply</Link></li>
+                            <li><Link to="/addMarathon">Add Marathon</Link></li>
+                            <li><Link to="/myMarathon/:id">My Marathon</Link></li>
+                            <li><Link to="/myApply/:id">My Apply</Link></li>
                         </ul>
                     </details>
                 </li>
@@ -46,7 +46,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl">marathon</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

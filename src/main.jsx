@@ -16,11 +16,13 @@ import MyMarathonList from './Pages/MyMarathonList/MyMarathonList.jsx';
 import MyApplyList from './Pages/MyApplyList/MyApplyList.jsx';
 import AuthProvider from './Contexts/AuthContext/AuthProvider.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
+import Error from './Pages/Error/Error.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <Error></Error>,
     children: [
         {
             index: true,
@@ -39,11 +41,11 @@ const router = createBrowserRouter([
           element: <PrivateRoute><MarathonDetails/></PrivateRoute>  //privateRoute
         },
         {
-          path:'/myMarathonList/:id',
+          path:'/myMarathon/:id',
           element: <PrivateRoute><MyMarathonList/></PrivateRoute>  //privateRoute
         },
         {
-          path:'/myApplyList/:id',
+          path:'/myApply/:id',
           element:  <PrivateRoute><MyApplyList/></PrivateRoute> //privateRoute
         },
         {
