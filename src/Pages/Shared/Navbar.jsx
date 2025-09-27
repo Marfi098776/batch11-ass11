@@ -1,15 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { use } from 'react';
+import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 const Navbar = () => {
 
+    const { user, signOutUser } = use(AuthContext);
+
     const links = <>
         <li><Link to="/">Home</Link></li>
-        <li><Link to='/marathons'>Marathons</Link></li>
+        <li><Link to="/marathons">Marathons</Link></li>
+        {
+            user && <>
+                <li>
+                    <details>
+                        <summary>Dashboard</summary>
+                        <ul className="p-2">
+                            <li><Link>Add Marathon</Link></li>
+                            <li><Link>My Marathon</Link></li>
+                            <li><Link>My Apply</Link></li>
+                        </ul>
+                    </details>
+                </li>
+            </>
+        }
+
     </>
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                console.log('Sign out');
+            })
+            .catch(error => console.log(error))
+
+    }
     return (
         <div className="navbar bg-base-100 shadow-sm">
-            
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -17,7 +42,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 p-2 shadow">
                         {links}
                     </ul>
                 </div>
@@ -28,31 +53,36 @@ const Navbar = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end gap-4">
-                <ul><Link to="/logIn">Log In</Link></ul>
-                <ul><Link to="/register">Register</Link></ul>
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img
-                                alt="Tailwind CSS Navbar component"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            <div className="navbar-end">
+                {
+                    user ? <div className="flex gap-2">
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img
+                                        alt="Tailwind CSS Navbar component"
+                                        src={user.photoURL} />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                                <li>
+                                    <a className="justify-between">
+                                        Profile
+                                    
+                                    </a>
+                                </li>
+                                <li><Link onClick={handleSignOut}>Logout</Link></li>
+                            </ul>
                         </div>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li>
-                            <Link to="/dashboard" className="justify-between">
-                                Dashboard
-                                <span className="badge">New</span>
-                            </Link>
-                        </li>
-                        <li><a>Logout</a></li>
-                    </ul>
-                </div>
+                    </div> :
+                        <>
+                            <NavLink className="btn ml-4" to="/logIn">Log In</NavLink>
+                            <NavLink className="btn ml-4" to="/register">Register</NavLink>
+                        </>
+                }
             </div>
-
         </div>
     );
 };
