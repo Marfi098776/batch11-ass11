@@ -18,6 +18,7 @@ import AuthProvider from './Contexts/AuthContext/AuthProvider.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
 import Error from './Pages/Error/Error.jsx';
 import Loading from './Pages/Loading/Loading.jsx';
+import ApplyMarathon from './Pages/ApplyMarathon/ApplyMarathon.jsx';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         {
           path:'/myMarathon',
           element: <PrivateRoute><MyMarathonList/></PrivateRoute>  //privateRoute
+        },
+        {
+          path: '/applyMarathon',
+          element: <PrivateRoute><ApplyMarathon></ApplyMarathon></PrivateRoute>
         },
         {
           path:'/myApply/:id',

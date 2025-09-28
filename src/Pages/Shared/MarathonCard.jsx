@@ -4,9 +4,9 @@ import { Link } from 'react-router';
 const MarathonCard = ({marathon}) => {
     const {_id, title, marathon_image, location, registrationStart, registrationEnd} = marathon;
     return (
-        <div className="card bg-base-100 shadow-sm">
+        <div className="card bg-base-100 h-90 shadow-sm">
             <figure>
-                <img className='w-full'
+                <img className=''
                     src={marathon_image}
                     alt="" />
             </figure>
