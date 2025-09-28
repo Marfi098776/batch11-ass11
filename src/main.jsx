@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -17,6 +17,7 @@ import MyApplyList from './Pages/MyApplyList/MyApplyList.jsx';
 import AuthProvider from './Contexts/AuthContext/AuthProvider.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
 import Error from './Pages/Error/Error.jsx';
+import Loading from './Pages/Loading/Loading.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,10 +39,11 @@ const router = createBrowserRouter([
         },
         {
           path:'/marathon-details/:id',
-          element: <PrivateRoute><MarathonDetails/></PrivateRoute>  //privateRoute
+          element: <PrivateRoute><Suspense fallback={<Loading></Loading>}><MarathonDetails/></Suspense></PrivateRoute>,//privateRoute
+          loader: ({params}) => fetch(`http://localhost:3000/marathon-details/${params.id}`)
         },
         {
-          path:'/myMarathon/:id',
+          path:'/myMarathon',
           element: <PrivateRoute><MyMarathonList/></PrivateRoute>  //privateRoute
         },
         {

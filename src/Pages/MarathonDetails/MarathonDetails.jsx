@@ -1,24 +1,34 @@
 import React from 'react';
+import { Link, useLoaderData } from 'react-router';
 
 const MarathonDetails = () => {
+    const marathonData = useLoaderData();
+    const {title, description, Location, marathonStart, marathon_image, registrationStart, registrationEnd, runningDistance, createdAt} = marathonData;
+    console.log(marathonData)
+
     return (
         <div className='hero-content min-h-screen'>
             <div className="card bg-base-100 shadow-sm">
                 <figure>
-                    <img 
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                        alt="Shoes" />
+                    <img className='w-full' 
+                        src={marathon_image}
+                        alt="" />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">
-                        Marathon title
-                        <div className="badge badge-secondary">NEW</div>
+                        {title}
+                        <span className='badge badge-outline'> Running Distance : {runningDistance}</span>
                     </h2>
-                    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                    <h3 className='text-sm'>Location : {Location}</h3>
+                    <p className='font-semibold'>Description:</p>
+                    <p>{description}</p>
+                    <h4 className='font-semibold'>Registration Start Date : </h4><span>{registrationStart}</span>
+                    <h4 className='font-semibold'>Registration End Date : </h4><span>{registrationEnd}</span>
+                    <h4 className='font-semibold'>Marathon Start : </h4><span>{marathonStart}</span>
                     <div className="card-actions justify-end">
-                        <div className="badge badge-outline">Fashion</div>
-                        <div className="badge badge-outline">Products</div>
+                        <div className="badge badge-outline">Total registrations : </div>
                     </div>
+                    <Link to={`/myApply`} className='btn'>Apply For This Marathon</Link>
                 </div>
             </div>
         </div>

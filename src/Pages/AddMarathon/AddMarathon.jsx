@@ -1,15 +1,35 @@
 import React, { use } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddMarathon = () => {
 
     const { user } = use(AuthContext)
-    const handleFormSubmit = e=> {
+    const handleFormSubmit = e => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form)
         const data = Object.fromEntries(formData.entries());
         console.log(data);
+
+        axios.post('http://localhost:3000/marathons', data)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your marathon has been Published",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            form.reset();
 
     }
     return (
@@ -26,14 +46,19 @@ const AddMarathon = () => {
                     <input type="text" name='location' className="input" placeholder="" />
                     {/* description */}
                     <label className="label">Description</label>
-                    <input type="text" name='description' className="input" placeholder="" />
+                    <textarea className="textarea" name='description' placeholder="Bio"></textarea>
                     {/* Running Distance */}
                     <label className="label">Running Distance</label>
-                    <input type="text" name='runningDistance' className="input" placeholder=" " />
+                    <select defaultValue="Pick a distance" className="select" name='runningDistance'>
+                        <option disabled={true}>Pick a distance</option>
+                        <option>25k</option>
+                        <option>10k</option>
+                        <option>3k</option>
+                    </select>
                     {/* marathonStart */}
                     <label className="label">Marathon Start</label>
                     <input type="date" name='marathonStart' className="input" />
-                    
+
                     {/* registrationStartDate */}
                     <label className="label">Registration Start</label>
                     <input type="date" name='registrationStart' className="input" />
@@ -47,10 +72,10 @@ const AddMarathon = () => {
                     <input type="text" name='hr_name' className="input" placeholder="" />
                     {/*  */}
                     <label className="label">HR_Email</label>
-                    <input type="email" name='hr_email' defaultValue={user.email} className="input" placeholder="" />
+                    <input type="email" name='hr_email' defaultValue={user.email} readOnly className="input" placeholder="" />
 
                     <label className="label">Created at</label>
-                    <input type="time" name='createdAt' className="input" />
+                    <input defaultValue={new Date()} type="time" name='createdAt' className="input" />
 
                     <button type='submit' className="btn btn-neutral mt-4">Add Marathon</button>
                 </fieldset>

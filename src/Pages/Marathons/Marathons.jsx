@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { use } from 'react';
+import MarathonCard from '../Shared/MarathonCard';
 
-const Marathons = () => {
+const Marathons = ({marathonPromises}) => {
+    const marathons = use(marathonPromises)
     return (
-        <div>
-            
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 m-4'>
+            {
+                marathons.map(marathon => <MarathonCard marathon={marathon} key={marathon._id}></MarathonCard>)
+            }
+
         </div>
     );
 };

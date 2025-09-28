@@ -8,19 +8,17 @@ const Navbar = () => {
 
     const links = <>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/marathons">Marathons</Link></li>
         {
             user && <>
-                <li>
-                    <details>
-                        <summary>Dashboard</summary>
-                        <ul className="p-2">
-                            <li><Link to="/addMarathon">Add Marathon</Link></li>
-                            <li><Link to="/myMarathon/:id">My Marathon</Link></li>
-                            <li><Link to="/myApply/:id">My Apply</Link></li>
-                        </ul>
-                    </details>
-                </li>
+                <div className="dropdown dropdown-right">
+                    <li tabIndex={0} role="button" className=""><Link>Dashboard</Link></li>
+                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                        <li><Link to="/addMarathon">Add Marathon</Link></li>
+                        <li><Link to="/myMarathon">My Marathon</Link></li>
+                        <li><Link to="/myApply">My Apply</Link></li>
+                        
+                    </ul>
+                </div>
             </>
         }
 
@@ -70,7 +68,7 @@ const Navbar = () => {
                                 <li>
                                     <a className="justify-between">
                                         Profile
-                                    
+
                                     </a>
                                 </li>
                                 <li><Link onClick={handleSignOut}>Logout</Link></li>
