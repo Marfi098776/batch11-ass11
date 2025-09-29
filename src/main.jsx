@@ -20,6 +20,9 @@ import Error from './Pages/Error/Error.jsx';
 import Loading from './Pages/Loading/Loading.jsx';
 import ApplyMarathon from './Pages/ApplyMarathon/ApplyMarathon.jsx';
 
+
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,11 +51,11 @@ const router = createBrowserRouter([
           element: <PrivateRoute><MyMarathonList/></PrivateRoute>  //privateRoute
         },
         {
-          path: '/applyMarathon',
+          path: '/applyMarathon/:id',
           element: <PrivateRoute><ApplyMarathon></ApplyMarathon></PrivateRoute>
         },
         {
-          path:'/myApply/:id',
+          path:'/myApply/',
           element:  <PrivateRoute><MyApplyList/></PrivateRoute> //privateRoute
         },
         {
