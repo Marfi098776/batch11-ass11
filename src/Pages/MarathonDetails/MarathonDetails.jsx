@@ -1,6 +1,7 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import { FaLocationDot, FaMapLocationDot } from "react-icons/fa6";
+
 
 const MarathonDetails = () => {
     const marathonData = useLoaderData();
@@ -9,7 +10,7 @@ const MarathonDetails = () => {
 
     const regStartDate = marathonData.registrationStart;
     const regEndDate = marathonData.registrationEnd;
-    console.log(regStartDate, regEndDate);
+    // console.log(regStartDate, regEndDate);
     const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const MarathonDetails = () => {
     }, [])
 
     return (
-        <div className='hero-content  min-h-screen'>
+        <div className='hero-content  min-h-screen mx-auto'>
             <div className="card bg-base-100 shadow-sm">
                 <figure>
                     <img className='w-96'

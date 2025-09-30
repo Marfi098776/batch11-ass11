@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
+import Mlogo from '../../assets/marathon-1.svg'
 
 const Navbar = () => {
 
@@ -14,8 +15,8 @@ const Navbar = () => {
                     <li tabIndex={0} role="button" className=""><Link>Dashboard</Link></li>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
                         <li><Link to="/addMarathon">Add Marathon</Link></li>
-                        <li><Link to="/myMarathon">My Marathon</Link></li>
-                        <li><Link to="/myApply">My Apply</Link></li>
+                        <li><Link to="/myMarathon">My Marathon List</Link></li>
+                        <li><Link to="/myApply">My Apply List</Link></li>
                         
                     </ul>
                 </div>
@@ -44,7 +45,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">marathon</a>
+                <img src={Mlogo} className='w-20 ml-2'/>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

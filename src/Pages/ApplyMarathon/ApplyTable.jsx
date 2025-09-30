@@ -3,6 +3,7 @@ import Marathons from '../Marathons/Marathons';
 
 const ApplyTable = ({myApplyPromise}) => {
     const applications = use(myApplyPromise);
+
     return (
         <div>
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -19,11 +20,11 @@ const ApplyTable = ({myApplyPromise}) => {
     <tbody>
       {/* row 1 */}
       {
-        applications.map((application, index) => <tr application={application}>
+        applications.map((application, index) => <tr application={application} key={application._id}>
         <th>{index + 1}</th>
-        <td>{application._id}</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
+        <td>{application.title}</td>
+        <td>{application.runningDistance}</td>
+        <td>{application.marathonStart}</td>
       </tr>)
       }
     </tbody>

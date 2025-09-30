@@ -1,11 +1,14 @@
 import React from 'react';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
-import { Link, useParams } from 'react-router';
+import { Link, useLoaderData, useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const ApplyMarathon = () => {
+    const marathonData = useLoaderData();
+    const {title, registrationStart, marathon_image} = marathonData;
+    console.log(marathonData);
     const { user } = useAuth();
     const { id: marathonId } = useParams();
     console.log(user, marathonId);
@@ -53,9 +56,9 @@ const ApplyMarathon = () => {
                 <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
                     <div className="space-y-2 col-span-full lg:col-span-1">
                         <p className="font-medium">Register For The Marathon</p>
-                        <img src="https://i.ibb.co.com/99Lm7jS3/FB-TW-FM2021-screening-panel.png" alt="" />
-                        <h3 className='text-3xl'>Marathon</h3>
-                        <p>Marathon Start : </p>
+                        <img src={marathon_image} alt="" />
+                        <h3 className='text-lg font-semibold'>{title}</h3>
+                        <p>Marathon Start : {registrationStart}</p>
                     </div>
                     <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                         <div className="col-span-full sm:col-span-3">
