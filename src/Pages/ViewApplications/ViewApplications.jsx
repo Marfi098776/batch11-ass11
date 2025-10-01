@@ -25,12 +25,12 @@ const ViewApplications = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            applicationCount.map((singleApply, index) => <tr singleApply={singleApply} key={singleApply._id}>
+                            applicationCount.map((singleapply, index) => <tr singleapply={singleapply} key={singleapply._id}>
                                 <th>{index + 1}</th>
-                                <td>{singleApply.fName}</td>
-                                <td>{singleApply.contact}</td>
-                                <td>{singleApply.applicant}</td>
-                                <td>{singleApply.marathonStart}</td>
+                                <td>{singleapply.fName}</td>
+                                <td>{singleapply.contact}</td>
+                                <td>{singleapply.applicant}</td>
+                                <td>{singleapply.marathonStart}</td>
                                 <td><input name='date' type="date" className="input" /></td>
                             </tr>)
                         }

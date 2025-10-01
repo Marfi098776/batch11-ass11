@@ -32,7 +32,7 @@ const ApplyMarathon = () => {
             city
         }
 
-        axios.post('http://localhost:3000/applications', application)
+        axios.post('https://marathon-server-ebon.vercel.app/applications', application)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {

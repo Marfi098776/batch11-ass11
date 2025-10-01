@@ -5,7 +5,7 @@ import Marathons from '../Marathons/Marathons';
 import Loading from '../Loading/Loading';
 
 const Home = () => {
-    const marathonPromises = fetch('http://localhost:3000/marathons').then(res => res.json())
+    const marathonPromises = fetch('https://marathon-server-ebon.vercel.app/marathons').then(res => res.json());
     return (
         <div>
             <Banner></Banner>

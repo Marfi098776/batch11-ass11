@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react';
 import ApplyTable from '../ApplyMarathon/ApplyTable';
 import Loading from '../Loading/Loading';
-import { myApplyPromise } from '../../api/applicationsApi';
 import useAuth from '../../Hooks/useAuth';
+import useApplicationApi from '../../api/useApplicationApi';
 
 const MyApplyList = () => {
     const {user} = useAuth();
+    const {myApplyPromise} = useApplicationApi();
     console.log('token in the context', user.accessToken);
     return (
         <div>

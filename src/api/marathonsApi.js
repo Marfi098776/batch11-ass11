@@ -1,5 +1,5 @@
 export const marathonsCreatedPromise = (email, accessToken) => {
-    return fetch(`http://localhost:3000/marathons?email=${email}`, {
+    return fetch(`https://marathon-server-ebon.vercel.app/marathons/applications?email=${email}`, {
         headers: {
             authorization: `Bearer ${accessToken}`
         }

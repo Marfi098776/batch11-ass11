@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         {
           path:'/marathon-details/:id',
           element: <PrivateRoute><Suspense fallback={<Loading></Loading>}><MarathonDetails/></Suspense></PrivateRoute>,//privateRoute
-          loader: ({params}) => fetch(`https://marathon-server-ql0xbbzj2-marfi098776s-projects.vercel.app/marathon-details/${params.id}`),
+          loader: ({params}) => fetch(`https://marathon-server-ebon.vercel.app/marathon-details/${params.id}`),
         },
         {
           path:'/myMarathon',
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         {
           path: '/applyMarathon/:id',
           element: <PrivateRoute><Suspense fallback={<Loading></Loading>}><ApplyMarathon/></Suspense></PrivateRoute>,
-          loader: ({params}) => fetch(`https://marathon-server-ql0xbbzj2-marfi098776s-projects.vercel.app/marathon-details/${params.id}`)
+          loader: ({params}) => fetch(`https://marathon-server-ebon.vercel.app/marathon-details/${params.id}`)
           
         },
         {
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         {
           path:'applications/:marathon_id',
           element: <PrivateRoute><ViewApplications></ViewApplications></PrivateRoute>,
-          loader: ({params}) => fetch(`https://marathon-server-ql0xbbzj2-marfi098776s-projects.vercel.app/applications/marathons/${params.marathon_id}`)
+          loader: ({params}) => fetch(`https://marathon-server-ebon.vercel.app/applications/marathons/${params.marathon_id}`)
         },
         {
           path:'/dashboard',
@@ -85,7 +85,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
+      <Suspense fallback={<Loading></Loading>}>
       <RouterProvider router={router} />
+      </Suspense>
     </AuthProvider>
   </StrictMode>,
 )

@@ -14,6 +14,7 @@ const MyMarathonsList = ({marathonsCreatedPromise}) => {
         <th>Name</th>
         <th>Location</th>
         <th>event Date</th>
+        <th>Count</th>
         <th>View Applications</th>
       </tr>
     </thead>
@@ -25,6 +26,7 @@ const MyMarathonsList = ({marathonsCreatedPromise}) => {
         <td>{marathon.title}</td>
         <td>{marathon.location}</td>
         <td>{marathon.marathonStart}</td>
+        <td>{marathon.application_count}</td>
         <td><Link to={`/applications/${marathon._id}`} className='btn'>View Applications</Link></td>
       </tr>)
       }

@@ -13,7 +13,7 @@ const AddMarathon = () => {
         const data = Object.fromEntries(formData.entries());
         console.log(data);
 
-        axios.post('http://localhost:3000/marathons', data)
+        axios.post('https://marathon-server-ebon.vercel.app/marathons', data)
             .then(res => {
                 console.log(res.data)
                 if (res.data.insertedId) {

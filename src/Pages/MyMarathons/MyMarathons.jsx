@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react';
 import Loading from '../Loading/Loading';
 import useAuth from '../../Hooks/useAuth';
-import { marathonsCreatedPromise } from '../../api/marathonsApi';
 import MyMarathonsList from './MyMarathonsList';
+import useMarathonsApi from '../../api/useMarathonsApi';
 
 const MyMarathons = () => {
-  const {user} = useAuth()
+  const {user} = useAuth();
+  const {marathonsCreatedPromise} = useMarathonsApi();
   return (
     <div>
       <h2 className='text-3xl lg:text-5xl font-semibold text-center m-3'>My Posted Marathons</h2>
